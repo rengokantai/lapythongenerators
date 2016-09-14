@@ -237,4 +237,12 @@ def file_write(filename):
         file.write(line)
       except GeneratorExit:
         file.close()
+        
+if __name__ == "__main__":
+  fname= file_write('a.txt')
+  lname= file_write('b.txt')
+  router = router()
+  for name in open('name.txt'):
+    router.send(name)
+  router.close()
 ```
