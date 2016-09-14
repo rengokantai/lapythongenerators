@@ -115,3 +115,26 @@ with simple_manager(obj):
 
 obj.prop #1
 ```
+
+#####Use the yielded value in contextmanager(not intuitive, needs memorize)
+```
+@contextmanager
+def create_file(name):
+  try:
+    logname=name
+    f=open(logname,'w')
+    f.write('a')
+    yield f
+  finally:
+    f.write('c')
+    f.close()
+```
+call:
+```
+with create_file('filename.txt') as file:
+  file.write('b')
+```
+then
+```
+cat filename.txt  #a b c 
+```
