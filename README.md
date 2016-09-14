@@ -190,3 +190,26 @@ next(c)
 c.send('a')
 c.send('d')
 ```
+#####Build a @coroutine decorator
+ex
+```
+def coroutine_deco(func)
+  def wrap(*args, **kwargs)
+    cr = func(*args,**kwargs)
+    next(cr)
+    return cr
+  return wrap
+```
+
+```
+@coroutine_deco
+def co():
+  while True:
+    x=yield
+    print(x)
+```
+test
+```
+c =co()
+c.send(1)
+```
