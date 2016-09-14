@@ -40,3 +40,19 @@ same as
 ```
 even = (n for n in range(10) if n%2==0)
 ```
+
+For complex generator better to break multiple generator
+```
+reverse_upper = (i[::-1] for i in (i.upper() for i in coll))
+```
+can break to
+```
+upper =  (i.upper() for i in coll)
+reverse_upper = (i[::-1] for i in upper)
+```
+#####Use a generator object
+call max on generator
+```
+max(i for i in range(10))   #9
+```
+```
