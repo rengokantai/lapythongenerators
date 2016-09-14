@@ -1,4 +1,5 @@
 ### lapythongenerators
+####1. Generator Functions and Expressions
 #####Build a generator function
 create function return even numbers  
 old school function way
@@ -57,10 +58,30 @@ max(i for i in range(10))   #9
 ```
 ######Fibonacci sequence fenerator
 ```
-def gen(n):
+def fib(n):
   i =0
   trail,start=0,1
   while True:
     yield start  #start from 1   #initially I wrote yield trail
     trail,start = start,trail+start
-```      
+```    
+call
+```
+for _ in range(10):
+  fib.next()
+```
+#####Build a generator pipeline
+example file
+```
+def seperate_name(names):
+  for full_name in names:
+    for name in full_name.split(' '):
+      yield name
+
+def get_longest(namelist):
+  full_names = (name.strip() for name in open(namelist))
+  names = seperate_name(full_names)
+  lengths =((name,len(name) for name in names
+  return max(langths, key=lambda x:x[1])
+```
+####2. Using Generators as Context Managers
