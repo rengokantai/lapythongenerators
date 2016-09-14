@@ -55,4 +55,12 @@ call max on generator
 ```
 max(i for i in range(10))   #9
 ```
+######Fibonacci sequence fenerator
 ```
+def gen(n):
+  i =0
+  trail,start=0,1
+  while True:
+    yield start  #start from 1   #initially I wrote yield trail
+    trail,start = start,trail+start
+```      
