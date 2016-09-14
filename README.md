@@ -138,3 +138,16 @@ then
 ```
 cat filename.txt  #a b c 
 ```
+####3. Coroutines
+#####Coroutine overview
+coroutines: 
+- receive values. 
+- may not return anything. 
+- not for iteration  
+- repeatedly receives input
+- precess input
+- stops at yield statement  
+- 
+In coroutine, the yield statement is used to capture the value of whatever is passed to the send method.  
+In the case of coroutines, the yield statement is not only in charge of pausing the flow, but also capturing values.  
+#####Create a coroutine
