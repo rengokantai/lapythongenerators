@@ -213,3 +213,28 @@ test
 c =co()
 c.send(1)
 ```
+
+#####Coroutine pipelines
+use coroutine to create data pipeline
+```
+@coroutine_deco
+def router():
+  try:
+    while True:
+      line= yield
+      (first, last) = line.split(' ')
+      fname.send(first)
+      lname.send(last.strip())
+    except GeneratorExit:
+      fname.close()
+      lname.close()
+@coroutine_deco
+def file_write(filename):
+  try:
+    with open(filename,'a') as file:
+      while True:
+        line = yield
+        file.write(line)
+      except GeneratorExit:
+        file.close()
+```
