@@ -68,7 +68,7 @@ def fib(n):
 call
 ```
 for _ in range(10):
-  fib.next()
+  next(fib)
 ```
 #####Build a generator pipeline
 example file
@@ -111,7 +111,7 @@ obj.prop  #1
 call contextmanager:
 ```
 with simple_manager(obj):
-  print obj.prop #2
+  print (obj.prop) #2
 
 obj.prop #1
 ```
@@ -147,7 +147,46 @@ coroutines:
 - repeatedly receives input
 - precess input
 - stops at yield statement  
-- 
+
 In coroutine, the yield statement is used to capture the value of whatever is passed to the send method.  
 In the case of coroutines, the yield statement is not only in charge of pausing the flow, but also capturing values.  
+
 #####Create a coroutine
+```
+def co():
+  while True:
+    x=yield
+    print(x)
+```
+call
+```
+c = co()
+next(c)
+c.send(1)
+```
+
+ex2
+```
+def conuter(s):
+  count=0
+  try:
+    while True:
+      item=yield
+      if instance(item,str):
+        if item in s:
+          count+=1
+          print(item)
+        else:
+          pass
+      else:
+        print("not a string")
+  except GeneratorExit:
+    print (count)
+```
+test
+```
+c =counter('abc')
+next(c)
+c.send('a')
+c.send('d')
+```
