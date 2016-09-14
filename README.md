@@ -85,3 +85,33 @@ def get_longest(namelist):
   return max(langths, key=lambda x:x[1])
 ```
 ####2. Using Generators as Context Managers
+#####The @contextmanager decorator
+ex
+```
+form contextlib import contextmanager
+
+@contextmanager  #must have this line to call __exit__
+def simple_manager(obj):
+  try:
+    obj.prop+=1
+    yield
+  finally:
+    obj.prop-=1
+
+class K(object):
+  def __init__(self,arg):
+    self.prop=arg
+```
+
+tests:
+```
+obj=K(1)
+obj.prop  #1
+```
+call contextmanager:
+```
+with simple_manager(obj):
+  print obj.prop #2
+
+obj.prop #1
+```
